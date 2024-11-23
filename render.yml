@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: api-workshop
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "flask run --host=0.0.0.0 --port=8100"
+    endVars:
+      - key: FLASK_APP
+        value: src/app
+      - key: FLASK_RUN_HOST
+        value: 0.0.0.0
+      - key: FLASK_RUN_PORT
+        value: 8100
+    plan: free
+    region:
+      - oregon
+    disk:
+      name: persistent_data
+      sizeGB: 1

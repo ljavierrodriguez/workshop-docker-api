@@ -1,0 +1,7 @@
+services:
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://workshop_docker_db_user:UVs7IS8MDa8Osxt8H7hKhdWRJS7jkarh@dpg-ct12sq1u0jms73cbq4jg-a.oregon-postgres.render.com/workshop_docker_db
+    ports: 
+      - "8100:8100"
