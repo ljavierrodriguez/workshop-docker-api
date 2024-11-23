@@ -32,5 +32,26 @@ def list_users():
         "users": users
     }), 200
 
+@app.route('/api/users', methods=['POST'])
+def add_user():
+
+    username = request.json.get('username')
+
+    if not username:
+        return jsonify({ "message": "Username is required"}), 422
+    
+    found = User.query.filter_by(username=username).first()
+
+    if found:
+        return jsonify({ "message": "User already exists"}), 422
+    
+    user = User()
+    user.username = username
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({ "status": "success", "message": "User created successfully"}), 201
+
 if __name__ == '__main__':
     app.run()
